@@ -1,0 +1,36 @@
+[
+  {
+    "accountNo": "7894561230123",
+    "type": "Current",
+    "openingBalance": 500000,
+    "transactions": [
+      {
+        "id": "JUN-VEND-001",
+        "date": "2025-06-10 15:00",
+        "toAccount": "OfficeSupplies Pvt Ltd",
+        "amount": -45000,
+        "method": "NEFT",
+        "status": "Approved",
+        "description": "Vendor payment for OfficeSupplies Pvt Ltd"
+      },
+      {
+        "id": "JUL-VEND-002",
+        "date": "2025-07-18 13:20",
+        "toAccount": "TechServices Ltd",
+        "amount": -32000,
+        "method": "RTGS",
+        "status": "Approved",
+        "description": "Vendor payment for TechServices Ltd"
+      },
+      {
+        "id": "AUG-VEND-003",
+        "date": "2025-08-05 11:00",
+        "toAccount": "Logistics Solutions",
+        "amount": -28000,
+        "method": "IMPS",
+        "status": "Pending",
+        "description": "Vendor payment for Logistics Solutions"
+      }
+    ]
+  }
+]

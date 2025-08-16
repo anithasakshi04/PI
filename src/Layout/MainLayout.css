@@ -1,0 +1,5 @@
+.scrollPage {
+  height: 100%;
+  overflow-y: auto;   /* vertical scroll */
+  overflow-x: hidden; /* block horizontal scroll */
+}

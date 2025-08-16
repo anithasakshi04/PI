@@ -7,6 +7,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 // import SCB from "../assests/Images/SCB.jpg";   // Header logo
 import SCB1 from "../assests/Images/SCB1.jpg"; // Background logo
+import "./MainLayout.css"; // import the css file
 
 export default function MainLayout({ children }) {
   <Link to="/batch-details">Batch Transactions</Link>
@@ -27,7 +28,7 @@ export default function MainLayout({ children }) {
   const navigate = useNavigate();
 
   return (
-    <div className="d-flex flex-column vh-100 position-relative" style={{ overflow: "hidden" }}>
+    <div className="d-flex flex-column vh-100 position-relative">
 
       {/* HEADER */}
       <header className="d-flex align-items-center justify-content-between bg-primary bg-opacity-75 px-3 py-2" style={{ zIndex: 1051 }}>

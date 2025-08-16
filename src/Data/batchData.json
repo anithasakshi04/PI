@@ -1,117 +1,80 @@
 [
   {
-    "id": "E000021",
-    "status": "Approved",
-    "users": [
-      { "id": "U001", "name": "Alice Johnson", "dept": "IT", "year": "2023", "location": "Chennai" },
-      { "id": "U002", "name": "Bob Smith", "dept": "Finance", "year": "2022", "location": "Mumbai" },
-      { "id": "U003", "name": "Carol White", "dept": "IT", "year": "2021", "location": "Chennai" },
-      { "id": "U004", "name": "David Lee", "dept": "HR", "year": "2023", "location": "Bangalore" }
-    ],
+    "accountNo": "1233456789790",
+    "type": "Savings",
+    "openingBalance": 300000,
     "transactions": [
       {
-        "txnId": "TXN1001",
-        "userId": "U001",
-        "amount": "1200",
-        "paymentType": "Automated",
-        "paymentMethod": "NEFT",
-        "paymentDate": "2025-08-01",
-        "status": "Successful"
+        "id": "JUN-SAL-001",
+        "date": "2025-07-24 10:00",
+        "toAccount": "Employee1",
+        "amount": -18000,
+        "method": "AUTO",
+        "status": "Approved",
+        "description": "Salary payment for Employee1",
+        "department": "finance",
+        "joiningYear": "2024",
+        "location": "chennai"
       },
       {
-        "txnId": "TXN1002",
-        "userId": "U001",
-        "amount": "1500",
-        "paymentType": "Manual",
-        "paymentMethod": "RTGS",
-        "paymentDate": "2025-08-10",
-        "status": "Successful"
+        "id": "JUN-INT-001",
+        "date": "2025-07-24 10:05",
+        "toAccount": "Employee2",
+        "amount": -2500,
+        "method": "AUTO",
+        "status": "Approved",
+        "description": "Salary payment for Employee2",
+        "department": "finance",
+        "joiningYear": "2024",
+        "location": "bangalore"
       },
       {
-        "txnId": "TXN1003",
-        "userId": "U002",
-        "amount": "2000",
-        "paymentType": "Automated",
-        "paymentMethod": "IMPS",
-        "paymentDate": "2025-07-25",
-        "status": "Successful"
+        "id": "JUL-SAL-002",
+        "date": "2025-07-24 10:10",
+        "toAccount": "Employee3",
+        "amount": -22000,
+        "method": "AUTO",
+        "status": "Approved",
+        "description": "Salary payment for Employee3",
+        "department": "it",
+        "joiningYear": "2025",
+        "location": "chennai"
       },
       {
-        "txnId": "TXN1004",
-        "userId": "U004",
-        "amount": "1800",
-        "paymentType": "Automated",
-        "paymentMethod": "NEFT",
-        "paymentDate": "2025-07-30",
-        "status": "Pending"
-      }
-    ]
-  },
-  {
-    "id": "V000015",
-    "status": "In-Process",
-    "users": [
-      { "id": "U010", "name": "Eve Davis", "dept": "IT", "year": "2023", "location": "Hyderabad" },
-      { "id": "U011", "name": "Frank Miller", "dept": "Finance", "year": "2022", "location": "Delhi" },
-      { "id": "U012", "name": "Grace Wilson", "dept": "HR", "year": "2021", "location": "Hyderabad" }
-    ],
-    "transactions": []
-  },
-  {
-    "id": "E000431",
-    "status": "Approved",
-    "users": [
-      { "id": "U020", "name": "Henry Thomas", "dept": "Finance", "year": "2023", "location": "Mumbai" },
-      { "id": "U021", "name": "Isabella Martinez", "dept": "IT", "year": "2022", "location": "Chennai" },
-      { "id": "U022", "name": "Jack Garcia", "dept": "HR", "year": "2021", "location": "Bangalore" }
-    ],
-    "transactions": [
-      {
-        "txnId": "TXN2001",
-        "userId": "U020",
-        "amount": "2500",
-        "paymentType": "Manual",
-        "paymentMethod": "RTGS",
-        "paymentDate": "2025-06-15",
-        "status": "Successful"
+        "id": "JUL-SAL-003",
+        "date": "2025-07-24 10:15",
+        "toAccount": "Employee4",
+        "amount": -40000,
+        "method": "AUTO",
+        "status": "Approved",
+        "description": "Salary payment for Employee4",
+        "department": "hr",
+        "joiningYear": "2024",
+        "location": "bangalore"
       },
       {
-        "txnId": "TXN2002",
-        "userId": "U021",
-        "amount": "1600",
-        "paymentType": "Automated",
-        "paymentMethod": "IMPS",
-        "paymentDate": "2025-06-20",
-        "status": "Successful"
-      }
-    ]
-  },
-  {
-    "id": "E000432",
-    "status": "Approved",
-    "users": [
-      { "id": "U030", "name": "Liam Johnson", "dept": "HR", "year": "2023", "location": "Bangalore" },
-      { "id": "U031", "name": "Mia Brown", "dept": "Finance", "year": "2022", "location": "Delhi" },
-      { "id": "U032", "name": "Noah Wilson", "dept": "IT", "year": "2021", "location": "Mumbai" }
-    ],
-    "transactions": [
-      {
-        "txnId": "TXN3001",
-        "userId": "U030",
-        "amount": "1900",
-        "paymentType": "Automated",
-        "paymentMethod": "NEFT",
-        "paymentDate": "2025-07-01",
-        "status": "Pending"
+        "id": "AUG-SAL-004",
+        "date": "2025-07-24 10:20",
+        "toAccount": "Employee5",
+        "amount": -15000,
+        "method": "AUTO",
+        "status": "Approved",
+        "description": "Salary payment for Employee5",
+        "department": "it",
+        "joiningYear": "2025",
+        "location": "bangalore"
       },
       {
-        "txnId": "TXN3002",
-        "userId": "U032",
-        "amount": "2100",
-        "paymentType": "Manual",
-        "paymentMethod": "RTGS",
-        "paymentDate": "2025-07-05",
-        "status": "Successful"
+        "id": "AUG-SAL-005",
+        "date": "2025-07-24 10:25",
+        "toAccount": "Employee6",
+        "amount": -12000,
+        "method": "NEFT",
+        "status": "Pending",
+        "description": "Salary payment for Employee6",
+        "department": "finance",
+        "joiningYear": "2024",
+        "location": "chennai"
       }
     ]
   }
