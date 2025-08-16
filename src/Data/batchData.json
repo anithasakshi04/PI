@@ -1,0 +1,118 @@
+[
+  {
+    "id": "E000021",
+    "status": "Approved",
+    "users": [
+      { "id": "U001", "name": "Alice Johnson", "dept": "IT", "year": "2023", "location": "Chennai" },
+      { "id": "U002", "name": "Bob Smith", "dept": "Finance", "year": "2022", "location": "Mumbai" },
+      { "id": "U003", "name": "Carol White", "dept": "IT", "year": "2021", "location": "Chennai" },
+      { "id": "U004", "name": "David Lee", "dept": "HR", "year": "2023", "location": "Bangalore" }
+    ],
+    "transactions": [
+      {
+        "txnId": "TXN1001",
+        "userId": "U001",
+        "amount": "1200",
+        "paymentType": "Automated",
+        "paymentMethod": "NEFT",
+        "paymentDate": "2025-08-01",
+        "status": "Successful"
+      },
+      {
+        "txnId": "TXN1002",
+        "userId": "U001",
+        "amount": "1500",
+        "paymentType": "Manual",
+        "paymentMethod": "RTGS",
+        "paymentDate": "2025-08-10",
+        "status": "Successful"
+      },
+      {
+        "txnId": "TXN1003",
+        "userId": "U002",
+        "amount": "2000",
+        "paymentType": "Automated",
+        "paymentMethod": "IMPS",
+        "paymentDate": "2025-07-25",
+        "status": "Successful"
+      },
+      {
+        "txnId": "TXN1004",
+        "userId": "U004",
+        "amount": "1800",
+        "paymentType": "Automated",
+        "paymentMethod": "NEFT",
+        "paymentDate": "2025-07-30",
+        "status": "Pending"
+      }
+    ]
+  },
+  {
+    "id": "V000015",
+    "status": "In-Process",
+    "users": [
+      { "id": "U010", "name": "Eve Davis", "dept": "IT", "year": "2023", "location": "Hyderabad" },
+      { "id": "U011", "name": "Frank Miller", "dept": "Finance", "year": "2022", "location": "Delhi" },
+      { "id": "U012", "name": "Grace Wilson", "dept": "HR", "year": "2021", "location": "Hyderabad" }
+    ],
+    "transactions": []
+  },
+  {
+    "id": "E000431",
+    "status": "Approved",
+    "users": [
+      { "id": "U020", "name": "Henry Thomas", "dept": "Finance", "year": "2023", "location": "Mumbai" },
+      { "id": "U021", "name": "Isabella Martinez", "dept": "IT", "year": "2022", "location": "Chennai" },
+      { "id": "U022", "name": "Jack Garcia", "dept": "HR", "year": "2021", "location": "Bangalore" }
+    ],
+    "transactions": [
+      {
+        "txnId": "TXN2001",
+        "userId": "U020",
+        "amount": "2500",
+        "paymentType": "Manual",
+        "paymentMethod": "RTGS",
+        "paymentDate": "2025-06-15",
+        "status": "Successful"
+      },
+      {
+        "txnId": "TXN2002",
+        "userId": "U021",
+        "amount": "1600",
+        "paymentType": "Automated",
+        "paymentMethod": "IMPS",
+        "paymentDate": "2025-06-20",
+        "status": "Successful"
+      }
+    ]
+  },
+  {
+    "id": "E000432",
+    "status": "Approved",
+    "users": [
+      { "id": "U030", "name": "Liam Johnson", "dept": "HR", "year": "2023", "location": "Bangalore" },
+      { "id": "U031", "name": "Mia Brown", "dept": "Finance", "year": "2022", "location": "Delhi" },
+      { "id": "U032", "name": "Noah Wilson", "dept": "IT", "year": "2021", "location": "Mumbai" }
+    ],
+    "transactions": [
+      {
+        "txnId": "TXN3001",
+        "userId": "U030",
+        "amount": "1900",
+        "paymentType": "Automated",
+        "paymentMethod": "NEFT",
+        "paymentDate": "2025-07-01",
+        "status": "Pending"
+      },
+      {
+        "txnId": "TXN3002",
+        "userId": "U032",
+        "amount": "2100",
+        "paymentType": "Manual",
+        "paymentMethod": "RTGS",
+        "paymentDate": "2025-07-05",
+        "status": "Successful"
+      }
+    ]
+  }
+]

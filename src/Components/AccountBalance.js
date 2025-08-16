@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+// src/Components/AccountBalance.js
+import React, { useContext, useState } from "react";
 import { Dropdown, Table, Form, ButtonGroup } from "react-bootstrap";
 import * as XLSX from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import accountData from "../Data/accountData.json"; // Import your dummy JSON
-// import { TransactionsContext } from "../contexts/TransactionsContext";
+import accountData from "../Data/accountData.json";
+import { TransactionsContext } from "../contexts/TransactionContext";
 
 function maskAccountNumber(accNo) {
   return (
-    accNo.substring(0, 4) +
-    "****" +
-    "****" +
-    accNo.substring(accNo.length - 4)
+    accNo.substring(0, 4) + "****" + "****" + accNo.substring(accNo.length - 4)
   );
 }
 
 export default function AccountBalance() {
-  // const { transactions } = useContext(TransactionsContext);
   const [selected, setSelected] = useState(0);
   const [filterMethod, setFilterMethod] = useState("All");
   const [fromDate, setFromDate] = useState("");
@@ -25,13 +22,11 @@ export default function AccountBalance() {
   const allAccounts = accountData.accounts;
   const selectedAccount = allAccounts[selected];
 
-  // Filtering logic
+  // Filtering logic for transactions
   const filteredTxns = selectedAccount.transactions.filter((txn) => {
-    // Method filter
     if (filterMethod !== "All" && txn.method !== filterMethod) {
       return false;
     }
-    // Date range filter
     if (fromDate) {
       const txnDate = new Date(txn.date);
       if (txnDate < new Date(fromDate)) {
@@ -47,18 +42,40 @@ export default function AccountBalance() {
     return true;
   });
 
+  // Calculate running balance based on filtered transactions
+  const calculateBalance = () => {
+    // Sum up all amounts, parsing the + or - sign and number
+    return filteredTxns.reduce((acc, txn) => {
+      return acc + parseFloat(txn.amount.replace(/[^\d.-]/g, ""));
+    }, 0);
+  };
+  const currentBalance = calculateBalance();
+
   // Export as Excel
   const exportExcel = () => {
     const wsData = [
       ["Account Type", selectedAccount.type],
       ["Account Number", selectedAccount.accountNo],
-      ["Account Balance", `₹ ${selectedAccount.balance}`],
+      [`Account Balance: ₹ ${currentBalance.toLocaleString()}`],
       [],
-      ["Transaction ID", "Date", "Account Number", "Amount", "Method", "Running Balance"],
+      [
+        "Transaction ID",
+        "Date",
+        "Account Number",
+        "Amount",
+        "Method",
+        "Running Balance",
+      ],
       ...filteredTxns.map((txn) => [
-        txn.id, txn.date, txn.accountNo, txn.amount, txn.method, txn.balance
+        txn.id,
+        txn.date,
+        txn.accountNo,
+        txn.amount,
+        txn.method,
+        txn.balance,
       ]),
     ];
+
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(wsData);
     XLSX.utils.book_append_sheet(wb, ws, "Transactions");
@@ -70,11 +87,24 @@ export default function AccountBalance() {
     const doc = new jsPDF();
     doc.text(`Account Type: ${selectedAccount.type}`, 10, 10);
     doc.text(`Account Number: ${selectedAccount.accountNo}`, 10, 18);
-    doc.text(`Account Balance: ₹ ${selectedAccount.balance}`, 10, 26);
+    doc.text(`Account Balance: ₹ ${currentBalance.toLocaleString()}`, 10, 26);
 
-    const tableColumn = ["Transaction ID", "Date", "Account Number", "Amount", "Method", "Balance"];
+    const tableColumn = [
+      "Transaction ID",
+      "Date",
+      "Account Number",
+      "Amount",
+      "Method",
+      "Balance",
+    ];
+
     const tableRows = filteredTxns.map((txn) => [
-      txn.id, txn.date, txn.accountNo, txn.amount, txn.method, txn.balance
+      txn.id,
+      txn.date,
+      txn.accountNo,
+      txn.amount,
+      txn.method,
+      txn.balance,
     ]);
 
     doc.autoTable({
@@ -82,6 +112,7 @@ export default function AccountBalance() {
       body: tableRows,
       startY: 34,
     });
+
     doc.save("AccountBalance.pdf");
   };
 
@@ -90,10 +121,12 @@ export default function AccountBalance() {
     const data = {
       accountType: selectedAccount.type,
       accountNumber: selectedAccount.accountNo,
-      accountBalance: selectedAccount.balance,
+      accountBalance: currentBalance,
       transactions: filteredTxns,
     };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "AccountBalance.json";
@@ -102,7 +135,6 @@ export default function AccountBalance() {
 
   return (
     <div className="container py-4">
-      
       {/* Account Info Box */}
       <div className="card mb-4 shadow-sm">
         <div className="card-body d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
@@ -125,11 +157,10 @@ export default function AccountBalance() {
               </Dropdown.Menu>
             </Dropdown>
           </div>
-
           <div className="mt-3 mt-md-0 text-md-end">
             <div className="fw-bold">Account Number: {selectedAccount.accountNo}</div>
             <div className="h5 fw-bold text-success">
-              ₹ {selectedAccount.balance.toLocaleString()}
+              Account Balance: ₹ {currentBalance.toLocaleString()}
             </div>
           </div>
         </div>
@@ -139,7 +170,7 @@ export default function AccountBalance() {
       <div className="card shadow-sm">
         <div className="card-header d-flex justify-content-between align-items-center flex-wrap">
           <span className="fw-bold">Transaction History</span>
-          
+
           <div className="d-flex flex-column align-items-start gap-2">
             {/* Method Filter */}
             <Form.Select
