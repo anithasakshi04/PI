@@ -136,8 +136,8 @@ export default function MainLayout({ children }) {
             {/* HOME LINK */}
             <Link
               to="/home"
-              className="btn btn-outline-success fw-bold w-100"
-              style={{ letterSpacing: "1px", textAlign: "center" , color:"white",backgroundColor:"#0473EA"}}
+              className="btn btn-outline-success fw-bold w-250"
+              style={{ letterSpacing: "1px", textAlign: "center" , color:"white",backgroundColor:"#0473EA",fontSize:'14px'}}
               onClick={closeSidebar}
             >
               Home
@@ -145,8 +145,8 @@ export default function MainLayout({ children }) {
 
             <Link
               to="/batchtxndetails"
-              className="btn btn-outline-success fw-bold w-100"
-              style={{ letterSpacing: "1px", textAlign: "center" , color:"white",backgroundColor:"#0473EA"}}
+              className="btn btn-outline-success fw-bold w-250"
+              style={{ letterSpacing: "1px", textAlign: "center" , color:"white",backgroundColor:"#0473EA",fontSize:'14px'}}
               onClick={closeSidebar}
             >
               Batch Transaction Details
@@ -154,8 +154,8 @@ export default function MainLayout({ children }) {
             {/* ACCOUNT BALANCE LINK */}
             <Link
               to="/accountbalance"
-              className="btn btn-outline-success fw-bold w-100 "
-              style={{ letterSpacing: "1px", textAlign: "center",color:"white",backgroundColor:"#0473EA" }}
+              className="btn btn-outline-success fw-bold w-250 "
+              style={{ letterSpacing: "1px", textAlign: "center",color:"white",backgroundColor:"#0473EA",fontSize:'14px' }}
               onClick={closeSidebar}
             >
               Account Balance
