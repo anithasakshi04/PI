@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import batchData from "../Data/batchData.json";
 import vendorsData from "../Data/vendorData.json";
 import "bootstrap/dist/css/bootstrap.min.css";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const BatchTransactionPage = () => {
   const batches = [
     { batchId: "E000021", status: "Approved", data: batchData[0] },
     { batchId: "E000431", status: "Approved", data: batchData[1] },
-    { batchId: "V000012", status: "Approved", data: vendorsData[0] },
+    { batchId: "V000012", status: "Approved", data: vendorsData[0]},
+    { batchId: "V000013", status: "In-Process", data: vendorsData[1] 
+    },
   ];
 
   const [selectedBatch, setSelectedBatch] = useState(batches[0]);
@@ -77,6 +81,58 @@ const BatchTransactionPage = () => {
         batchName: getBatchName(selectedBatch.batchId),
       }))
   );
+
+const downloadPDF = () => {
+  const doc = new jsPDF();
+
+  doc.setFontSize(16);
+  doc.text(`Batch ${selectedBatch.batchId} - Transaction Summary`, 14, 20);
+
+  const tableColumn = [
+    "Batch Name",
+    "Transaction ID",
+    "Amount (INR)",
+    "Method",
+    "Status",
+    "Date",
+    "Pay From",
+    "Pay To",
+    "Description",
+  ];
+
+  const tableRows = [];
+
+  const dataToExport =
+    mode === "single" && selectedUser
+      ? users.filter((u) => u.value === selectedUser)
+      : users;
+
+  dataToExport.forEach((u) => {
+    const txn = u.txn;
+    const row = [
+      u.batchName,
+      txn.id,
+      Math.abs(txn.amount),
+      txn.method,
+      txn.status,
+      txn.date,
+      selectedBatch.data.accountNo,
+      u.label,
+      txn.description,
+    ];
+    tableRows.push(row);
+  });
+
+  doc.autoTable({
+    head: [tableColumn],
+    body: tableRows,
+    startY: 30,
+    styles: { fontSize: 10 },
+    headStyles: { fillColor: [41, 128, 185] },
+  });
+
+  doc.save(`Batch_${selectedBatch.batchId}_Transactions.pdf`);
+};
 
   return (
     <div className="container-fluid vh-100 d-flex flex-column p-0">
@@ -194,7 +250,7 @@ const BatchTransactionPage = () => {
           <div className="card shadow-sm">
             <div className="card-header d-flex justify-content-between align-items-center">
               <h6 className="mb-0">Payment Summary</h6>
-              <button className="btn btn-sm btn-outline-secondary">⬇ Download</button>
+              <button className="btn btn-sm btn-outline-secondary" onClick={downloadPDF}>Download</button>
             </div>
             <div className="card-body p-3">
               {mode === "single" && selectedUser &&
