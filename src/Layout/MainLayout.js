@@ -5,22 +5,19 @@ import { Link, useNavigate } from "react-router-dom";  // Added useNavigate for 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-// import SCB from "../assests/Images/SCB.jpg";   // Header logo
 import SCB1 from "../assests/Images/SCB1.jpg"; // Background logo
-import "./MainLayout.css"; // import the css file
+import "./MainLayout.css"; 
 
 export default function MainLayout({ children }) {
   <Link to="/batch-details">Batch Transactions</Link>
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Currency dropdown state
   const [currency, setCurrency] = useState("INR (India)");
   const handleSelect = (eventKey) => setCurrency(eventKey);
 
-  // Mock user (replace with real auth)
+
   const user = { name: "John Doe", email: "john@example.com", accessLevel: 2 };
 
-  // Overlay alpha
   const overlayAlpha = sidebarOpen ? 0.6 : 0.08;
   const closeSidebar = () => setSidebarOpen(false);
 
@@ -37,8 +34,7 @@ export default function MainLayout({ children }) {
           <button className="btn btn-primary  me-3" onClick={() => setSidebarOpen(!sidebarOpen)}>
             <FaBars size={20} className="text-white" />
           </button>
-          {/* Header logo */}
-          {/* <img alt="Standard Chartered" src={SCB} width="120" height="32" /> */}
+
         </div>
         <div className="d-flex align-items-center">
           <Dropdown align="end" className="mx-3" >
@@ -54,7 +50,7 @@ export default function MainLayout({ children }) {
                   <div style={{ fontSize: "0.9em" }}>{user.email}</div>
                   <div style={{ fontSize: "0.85em" }}>Access Level: {user.accessLevel}</div>
                 </Dropdown.ItemText>
-                {/* Optionally add "Profile" link, etc. */}
+
               </Dropdown.Menu>
             </Dropdown>
           <button className="btn btn- me-2">
@@ -64,7 +60,7 @@ export default function MainLayout({ children }) {
         </div>
       </header>
 
-      {/* ACTION BAR */}
+
       <div className="d-flex align-items-center w-100 px-4 py-2 bg-primary bg-opacity-50"
         style={{
           borderBottom: "1px solid #e9ecef",
@@ -74,13 +70,13 @@ export default function MainLayout({ children }) {
           color: "white"
         }}
       >
-        {/* BACK BUTTON navigates to Home */}
+
         <button className="btn btn-primary btn-sm me-3" onClick={() => navigate("/home")}>&lt; Back</button>
 
-        {/* Dynamic access level */}
+
         <span className="fw-bold">Access Level : {user.accessLevel}</span>
 
-        {/* Currency dropdown */}
+
         <span className="ms-auto fw-bold d-flex align-items-center color-white ">
           <DropdownButton
             id="currency-dropdown"
@@ -97,7 +93,7 @@ export default function MainLayout({ children }) {
         </span>
       </div>
 
-      {/* BODY */}
+
       <div className="flex-grow-1 d-flex position-relative"
         style={{
           minHeight: 0,
@@ -109,7 +105,7 @@ export default function MainLayout({ children }) {
           transition: "background 0.3s"
         }}
       >
-        {/* Light overlay */}
+
         <div style={{
           position: "absolute",
           top: 0,
@@ -122,7 +118,7 @@ export default function MainLayout({ children }) {
           pointerEvents: "none"
         }} />
 
-        {/* SIDEBAR */}
+
         {sidebarOpen && (
           <aside className="bg-primary bg-opacity-25 px-3 py-3 d-flex flex-column gap-3"
             style={{
@@ -133,7 +129,7 @@ export default function MainLayout({ children }) {
               boxShadow: "2px 0 10px rgba(0,0,0,0.14)"
             }}
           >
-            {/* HOME LINK */}
+
             <Link
               to="/home"
               className="btn btn-outline-success fw-bold w-250"
@@ -151,7 +147,7 @@ export default function MainLayout({ children }) {
             >
               Batch Transaction Details
             </Link>
-            {/* ACCOUNT BALANCE LINK */}
+
             <Link
               to="/accountbalance"
               className="btn btn-outline-success fw-bold w-250 "
@@ -163,13 +159,12 @@ export default function MainLayout({ children }) {
           </aside>
         )}
 
-        {/* MAIN CONTENT */}
         <main className="flex-grow-1 d-flex flex-column align-items-center pt-4" style={{ zIndex: 2 }}>
           {children}
         </main>
       </div>
 
-      {/* Overlay to close sidebar */}
+
       {sidebarOpen && (
         <div onClick={closeSidebar}
           style={{
